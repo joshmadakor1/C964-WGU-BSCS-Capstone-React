@@ -90,7 +90,7 @@ class ImageData extends Component {
                     <img alt="Click for next" className="btn btn-link photo" src={logo} style={{height:"150px"}} onClick={this.getNextImage}/>
                 </center>
             </div>
-           <h1 className="display-1" style={{textAlign: "center"}}>Random Image Analyzer</h1>
+           <h1 className="display-2" style={{textAlign: "center"}}>Random Image Analyzer</h1>
            <div className="" style={{ position: "absolute", textAlign: "right", width: "100%", paddingRight:"5%", paddingTop:"5%"}}>
                <span className="btn btn-clear" style={{fontSize: "150px"}} onClick={this.getNextImage}>
                    &#62;
@@ -119,9 +119,9 @@ class ImageData extends Component {
             <b>Adult Content</b><br/><ul>
             {(this.state.data.hasOwnProperty('adult') && this.state.data.adult.hasOwnProperty('adultScore')) && (
                 <React.Fragment>
-                    {this.state.data.adult.adultScore > 0.5 ? <li key={this.state.data.adult.adultScore}> <font style={{fontWeight: "bold"}}className="text-danger">Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.adultScore}>Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</li>}
-                    {this.state.data.adult.racyScore > 0.5 ? <li key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold"}}className="text-danger">Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.racyScore}>Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
-                    {this.state.data.adult.goreScore > 0.5 ? <li key={this.state.data.adult.goreScore}> <font style={{fontWeight: "bold"}}className="text-danger">Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.goreScore}>Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</li>}
+                    {this.state.data.adult.adultScore > 0.5 ? <li key={this.state.data.adult.adultScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.adultScore}>Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</li>}
+                    {this.state.data.adult.racyScore > 0.5 ? <li key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.racyScore}>Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
+                    {this.state.data.adult.goreScore > 0.5 ? <li key={this.state.data.adult.goreScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.goreScore}>Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</li>}
                 </React.Fragment>
             )}</ul>
             
@@ -151,7 +151,7 @@ class ImageData extends Component {
             <div className="col-12 col-sm-6 col-md-8">
 
             <center>
-                <img alt="Random visual grabbed from 4chan.org/b/" src={this.state.data.mirrorimageurl.length > 0 && this.state.data.mirrorimageurl } onClick={this.toggleBlur} style={{width: "70%", height: "auto", filter: `blur(${this.state.imageBlur})`}} />
+                <img alt="Random visual grabbed from 4chan.org/b/" src={(this.state.data.hasOwnProperty("mirrorimageurl")) && (this.state.data.mirrorimageurl.length > 0) && (this.state.data.mirrorimageurl )} onClick={this.toggleBlur} style={{width: "70%", height: "auto", filter: `blur(${this.state.imageBlur})`}} />
                 </center>
             </div>
             <br/><br/>
