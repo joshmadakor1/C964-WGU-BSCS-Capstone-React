@@ -59,6 +59,9 @@ class ImageData extends Component {
         //this.setState({this.state.data.imageurl: "ass"})
         this.state.data.mirrorimageurl = loadingImage;
         this.state.imageBlur = "0px";
+        this.state.categories = [];
+        this.state.adult = {};
+        this.state.description = {tags:[], captions:[], objects: []}
         this.setState(this.state)
         //this.resetState();
         const {data} = await axios({
