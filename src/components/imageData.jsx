@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from "../images/logo.png";
 import loadingImage from "../images/loading.gif";
 const axios = require('axios');
-// TODO: Prevent image from getting too tall
-// TODO: Verify state properties before use
+// TODO: Change image sizing to em?
+// TODO: Make work on mobile lol
+// TODO: Consider removing <li> from cards
 class ImageData extends Component {
    state = {
        data: {
