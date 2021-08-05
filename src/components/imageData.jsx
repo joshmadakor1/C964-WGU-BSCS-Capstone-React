@@ -107,6 +107,7 @@ class ImageData extends Component {
             <div >
                 <center><br/>
                     <img alt="Click for next" className="btn btn-link photo" src={logo} style={{height:"120px"}} onClick={this.getNextImage}/>
+                    <p>{`${this.state.data.mirrorimageurl},${(this.state.data.adult.adultScore)},${(this.state.data.adult.racyScore)},${(this.state.data.adult.goreScore)},`}</p>
                 </center>
             </div>
            <h1 className="display-2" style={{textAlign: "center"}}>Random Image Analyzer</h1>
@@ -117,7 +118,8 @@ class ImageData extends Component {
             </div>
 
            <center>Click image to un-blur. <br/>
-                <font style={{color:"red", fontWeight:"bold"}}>WARNING!</font> Image may still be <font style={{color:"red", fontWeight:"bold"}}>NSFW</font> despite a "safe" analysis.<br/><br/><br/>
+                <font style={{color:"red", fontWeight:"bold"}}>WARNING!</font> Image may still be <font style={{color:"red", fontWeight:"bold"}}>NSFW</font> despite a "safe" analysis.<br/><br/>
+                <br/>
 
                 </center>
             
@@ -154,7 +156,7 @@ class ImageData extends Component {
                     {(this.state.data.hasOwnProperty('adult') && this.state.data.adult.hasOwnProperty('adultScore')) && (
                         <React.Fragment>
                             {this.state.data.adult.adultScore > 0.5 ? <li key={this.state.data.adult.adultScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.adultScore}>Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</li>}
-                            {this.state.data.adult.racyScore > 0.5 ? <li key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.racyScore}>Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
+                            {this.state.data.adult.racyScore > 0.5 ? <li key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Racy Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.racyScore}>Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
                             {this.state.data.adult.goreScore > 0.5 ? <li key={this.state.data.adult.goreScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.goreScore}>Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</li>}
                         </React.Fragment>
                     )}</ul>
