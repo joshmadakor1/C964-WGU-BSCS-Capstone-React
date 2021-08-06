@@ -107,7 +107,7 @@ class ImageData extends Component {
             <div >
                 <center><br/>
                     <img alt="Click for next" className="btn btn-link photo" src={logo} style={{height:"120px"}} onClick={this.getNextImage}/>
-                    <p>{`${this.state.data.mirrorimageurl},${(this.state.data.adult.adultScore)},${(this.state.data.adult.racyScore)},${(this.state.data.adult.goreScore)},`}</p>
+                    <br/>{`${this.state.data.mirrorimageurl},${(this.state.data.adult.adultScore)},${(this.state.data.adult.racyScore)},${(this.state.data.adult.goreScore)},`}
                 </center>
             </div>
            <h1 className="display-2" style={{textAlign: "center"}}>Random Image Analyzer</h1>
