@@ -24,7 +24,8 @@ class ImageData extends Component {
                "sus": 0,
                "gore": 0,
                "nsfw": 0
-           }
+           },
+           aimlverdict: ""
        },
        imageBlur: "0px"
     }
@@ -61,7 +62,8 @@ class ImageData extends Component {
                     "sus": 0,
                     "gore": 0,
                     "nsfw": 0
-                }
+                },
+                aimlverdict: ""
             },
             imageBlur: "0px"
         }
@@ -87,9 +89,9 @@ class ImageData extends Component {
             method: 'get',
             url: 'https://c964-josh.azurewebsites.net/4chanraw' //http://127.0.0.1:3030/4chanraw
           })
-          console.log(data)
-          this.setState({data: data,imageBlur:"30px"});
-          //console.log(data)
+        console.log(data)
+        this.setState({data: data, imageBlur:"30px"});
+        
     }
 
     toggleBlur = () => {
@@ -107,7 +109,7 @@ class ImageData extends Component {
             <div >
                 <center><br/>
                     <img alt="Click for next" className="btn btn-link photo" src={logo} style={{height:"120px"}} onClick={this.getNextImage}/>
-                    <br/>{`${this.state.data.mirrorimageurl},${(this.state.data.adult.adultScore)},${(this.state.data.adult.racyScore)},${(this.state.data.adult.goreScore)},`}
+                    <br/>{/*`${this.state.data.mirrorimageurl},${(this.state.data.adult.adultScore)},${(this.state.data.adult.racyScore)},${(this.state.data.adult.goreScore)},`*/}
                 </center>
             </div>
            <h1 className="display-2" style={{textAlign: "center"}}>Random Image Analyzer</h1>
@@ -148,16 +150,29 @@ class ImageData extends Component {
                         </div>
                     </div>
 
-                    {/* Adult Content */}
+                    {/* AI ML PREDICTION */}
                     <div className="card" style={{width: "18rem", fontSize: "90%", borderColor: "#f66d7a"}}>
                         <div className="card-body">
-                        <h5 className="card-title">Adult Content</h5>
+                        <h5 className="card-title">ML Model Prediction:</h5>
+                        <ul style={{marginBottom: 0}}>
+                    {(this.state.data.hasOwnProperty('aimlverdict')) && (
+                        <li style={{listStyle: "none"}}>
+                            {this.state.data.aimlverdict === true ? <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">NOT SAFE FOR WORK</font> : <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-success">Probably Safe</font>}    
+                        </li>
+                    )}</ul>
+                        </div>
+                    </div>
+
+                    {/* Adult Content */}
+                    <div className="card" style={{width: "18rem", fontSize: "90%"}}>
+                        <div className="card-body">
+                        <h5 className="card-title">Cognitive Services Stats:</h5>
                         <ul style={{marginBottom: 0}}>
                     {(this.state.data.hasOwnProperty('adult') && this.state.data.adult.hasOwnProperty('adultScore')) && (
                         <React.Fragment>
-                            {this.state.data.adult.adultScore > 0.5 ? <li key={this.state.data.adult.adultScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.adultScore}>Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</li>}
-                            {this.state.data.adult.racyScore > 0.5 ? <li key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Racy Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.racyScore}>Sus Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
-                            {this.state.data.adult.goreScore > 0.5 ? <li key={this.state.data.adult.goreScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</font></li> : <li key={this.state.data.adult.goreScore}>Gore - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</li>}
+                            {this.state.data.adult.adultScore > 0.5 ? <li style={{listStyle: "none"}} key={this.state.data.adult.adultScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</font></li> : <li style={{listStyle: "none"}} key={this.state.data.adult.adultScore}>Adult Content - {parseFloat(this.state.data.adult.adultScore * 100).toFixed(2)}%</li>}
+                            {this.state.data.adult.racyScore > 0.5 ? <li style={{listStyle: "none"}} key={this.state.data.adult.racyScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Racy Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</font></li> : <li style={{listStyle: "none"}} key={this.state.data.adult.racyScore}>Racy Content - {parseFloat(this.state.data.adult.racyScore * 100).toFixed(2)}%</li>}
+                            {this.state.data.adult.goreScore > 0.5 ? <li style={{listStyle: "none"}} key={this.state.data.adult.goreScore}> <font style={{fontWeight: "bold", fontSize: "110%", textShadow:"0 0 3px #FFFF00"}} className="text-danger">Grotesque Content - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</font></li> : <li style={{listStyle: "none"}} key={this.state.data.adult.goreScore}>Grotesque Content - {parseFloat(this.state.data.adult.goreScore * 100).toFixed(2)}%</li>}
                         </React.Fragment>
                     )}</ul>
                         </div>
